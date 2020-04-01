@@ -21,7 +21,7 @@ const Jumbotron = props => {
         </Row>
         <Row helper={"justify-content-around"}>
           <Col md={6}>
-            <NavLink to='/search' className="btn btn-info btn-large">Search</NavLink>
+            <NavLink to='/' className="btn btn-info btn-large">Search</NavLink>
           </Col>
           <Col md={6}>
             <NavLink to='/saved' className="btn btn-info btn-large">Saved</NavLink>

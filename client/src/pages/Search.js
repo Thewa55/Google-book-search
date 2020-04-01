@@ -8,8 +8,8 @@ import Card from "../components/Card.js";
 
 class Search extends  Component{
   state = {
-    searchterm: "",
-    booklist: [],
+    searchTerm: "",
+    bookList: [],
     savedBookIds: [],
     error: null
   }
@@ -28,6 +28,7 @@ class Search extends  Component{
     }
     
     searchGoogleBooks(this.state.searchterm).then(res => {
+      console.log(res.data)
       const { items } = res.data
       this.setState({error: null})
       const booklistCleaned = items.map(book =>{
@@ -41,7 +42,8 @@ class Search extends  Component{
       })
 
       return this.setState({bookList: booklistCleaned, searchTerm: ""})
-    }).then(this.retrieveSavedBooks)
+    }).then(this.retrieveSavedBooks)    
+    .catch(err => this.setState({ error: err }))
   };
 
   retrieveSavedBooks = () => {
@@ -53,7 +55,7 @@ class Search extends  Component{
   }
 
   handleBookSave = bookId => {
-    const book = this.state.booklist.find(book => book.bookId === book.id)
+    const book = this.state.bookList.find(book => book.bookId === book.id)
     saveBook(book).then(() => {
         const savedBookIds = [...this.state.savedBookIds, bookId];
         this.setState({ savedBookIds})
@@ -77,7 +79,7 @@ class Search extends  Component{
                     value={this.state.searchTerm}
                     name="searchTerm"
                   />
-                  {this.state.error && !this.state.searchterm.length && <div className="alert-danger my-2">{this.state.error}</div>}
+                  {this.state.error && !this.state.searchTerm.length && <div className="alert-danger my-2">{this.state.error}</div>}
                   <button type="submit" className="btn btn-block btn-dark mt-2">
                     Search for a book
                   </button>
@@ -85,10 +87,10 @@ class Search extends  Component{
               </Card>
             </Col>
             <Col xs={12} md={8}>
-              {!this.state.booklist.length ?(
+              {!this.state.bookList.length ?(
                 <h2 className="text-center">Search for book to begin</h2>
               ): (
-                this.state.booklist.map(book => {
+                this.state.bookList.map(book => {
                   return(
                     <Col key={book.id} md={4}>
                       <Card 
