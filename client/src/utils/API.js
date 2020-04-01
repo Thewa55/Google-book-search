@@ -18,7 +18,7 @@ export const searchGoogleBooks = query => {
     params: {
       q: query
     }
-  })
+  });
 }
 
 export default {

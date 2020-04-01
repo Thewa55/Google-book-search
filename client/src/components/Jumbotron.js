@@ -24,7 +24,7 @@ const Jumbotron = props => {
             <NavLink to='/' className="btn btn-info btn-large">Search</NavLink>
           </Col>
           <Col md={6}>
-            <NavLink to='/saved' className="btn btn-info btn-large">Saved</NavLink>
+            <NavLink to='/Saved' className="btn btn-info btn-large">Saved</NavLink>
           </Col>
         </Row>
       </Container>

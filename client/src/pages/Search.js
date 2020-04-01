@@ -27,7 +27,7 @@ class Search extends  Component{
       return this.setState({error: "Please enter a title"})
     }
     
-    searchGoogleBooks(this.state.searchterm).then(res => {
+    searchGoogleBooks(this.state.searchTerm).then(res => {
       console.log(res.data)
       const { items } = res.data
       this.setState({error: null})
@@ -94,6 +94,7 @@ class Search extends  Component{
                   return(
                     <Col key={book.id} md={4}>
                       <Card 
+                        key={book.id}
                         title={book.title}
                         image={book.image ? book.image : undefined}  
                       >
