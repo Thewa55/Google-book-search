@@ -27,12 +27,13 @@ class Saved extends Component{
   }
 
   render(){
+    console.log(this.state.bookList)
     return(
       <>
         <Jumbotron fluid bg={"dark"} color={"light"} pageTitle={"Viewing Saved Books"} />
         <Container>
           <Row>
-            {this.state.bookList.length ? (
+            {!this.state.bookList.length ? (
               <h2 className="text-center">No Saved Books</h2>
             ): (
               this.state.bookList.map( book => {
@@ -47,7 +48,7 @@ class Saved extends Component{
                         {`By: ${book.authors.length ? book.authors.join(', '): null}`}
                       </small>
                       <p>{book.description}</p>
-                      <button onClick={() => this.handleGetSavedBooks(book.id)} className="btn btn-danger btn-sm"></button>
+                      <button onClick={() => this.handleGetSavedBooks(book.id)} className="btn btn-danger btn-sm">Remove Book</button>
                     </Card>
                   </Col>
                 )

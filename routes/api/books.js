@@ -1,10 +1,10 @@
 const router = require("express").Router();
-const { getSavedBooks, savedBook, removeBook} = require("../../controllers/booksController");
+const { getSavedBooks, saveBook, removeBook} = require("../../controllers/booksController");
 
 // Matches with "/api/books"
 router.route("/")
   .get(getSavedBooks)
-  .post(savedBook);
+  .post(saveBook);
 
 // Matches with "/api/books/:id"
 router

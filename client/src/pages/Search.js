@@ -7,6 +7,7 @@ import Col from "../components/Col.js";
 import Card from "../components/Card.js";
 
 class Search extends  Component{
+    
   state = {
     searchTerm: "",
     bookList: [],
@@ -28,7 +29,6 @@ class Search extends  Component{
     }
     
     searchGoogleBooks(this.state.searchTerm).then(res => {
-      console.log(res.data)
       const { items } = res.data
       this.setState({error: null})
       const booklistCleaned = items.map(book =>{
@@ -40,7 +40,7 @@ class Search extends  Component{
           image: book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : ""
         }
       })
-
+      console.log(booklistCleaned)
       return this.setState({bookList: booklistCleaned, searchTerm: ""})
     }).then(this.retrieveSavedBooks)    
     .catch(err => this.setState({ error: err }))
@@ -55,7 +55,8 @@ class Search extends  Component{
   }
 
   handleBookSave = bookId => {
-    const book = this.state.bookList.find(book => book.bookId === book.id)
+    const book = this.state.bookList.find(book => book.bookId === bookId)
+    console.log(book)
     saveBook(book).then(() => {
         const savedBookIds = [...this.state.savedBookIds, bookId];
         this.setState({ savedBookIds})
@@ -63,6 +64,7 @@ class Search extends  Component{
   };
 
   render(){
+    console.log(this.state.savedBookIds)
     return(
       <>
         <Jumbotron fluid bg={"dark"} color={"light"} pageTitle={"Search for Books"} />
