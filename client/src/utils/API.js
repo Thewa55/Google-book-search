@@ -9,8 +9,8 @@ export const getSavedBooks = () => {
   return axios.get("/api/books")
 }
 
-export const removeBooks = bookid => {
-  return axios.delete("/api/books/${bookid}")
+export const removeBook = bookId => {
+  return axios.delete(`/api/books/${bookId}`)
 }
 
 export const searchGoogleBooks = query => {
@@ -24,6 +24,6 @@ export const searchGoogleBooks = query => {
 export default {
   saveBook,
   getSavedBooks,
-  removeBooks,
+  removeBook,
   searchGoogleBooks
 }

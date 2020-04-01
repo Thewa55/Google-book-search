@@ -4,7 +4,7 @@ import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
 import Card from "../components/Card";
-import { removeBooks, getSavedBooks } from "../utils/API";
+import { removeBook, getSavedBooks } from "../utils/API";
 
 class Saved extends Component{
   state={
@@ -23,7 +23,7 @@ class Saved extends Component{
   }
 
   handleRemoveBook = bookId => {
-    removeBooks(bookId).then(this.handleGetSavedBooks).catch(err => console.log(err))
+    removeBook(bookId).then(this.handleGetSavedBooks).catch(err => console.log(err))
   }
 
   render(){
@@ -48,7 +48,7 @@ class Saved extends Component{
                         {`By: ${book.authors.length ? book.authors.join(', '): null}`}
                       </small>
                       <p>{book.description}</p>
-                      <button onClick={() => this.handleGetSavedBooks(book.id)} className="btn btn-danger btn-sm">Remove Book</button>
+                      <button onClick={() => this.handleRemoveBook(book._id)} className="btn btn-danger btn-sm">Remove Book</button>
                     </Card>
                   </Col>
                 )
